@@ -1,0 +1,223 @@
+--- 
+---
+
+/************************************************************************
+ *  Overrides & Import
+ */
+
+//override bootstrap
+$brand-primary: saturate(darken(#5bc0de, 15%), 10%); 
+$btn-default-bg: #f7f7f7;
+$btn-default-border: #ddd;
+
+@import 'bootstrap';
+@import 'fontawesome/font-awesome';
+
+
+/************************************************************************
+ *  Common varaiable and placeholders
+ */
+
+/*space*/
+$space: 20px;
+$spaceDouble: $space*2;
+
+/*color*/
+
+$white: #fff;
+$black: #000;
+$error: palevioletred;
+$grey: #333;
+$greyDark: #222;
+$greyLight: #ddd;
+$alabaster: #f7f7f7;
+$colorPrimary: $brand-primary;
+
+%align-left {
+    text-align: left;
+}
+%align-right {
+    text-align: right;
+}
+%align-center {
+    text-align: center;
+}
+/**********************************************************************
+ *  base
+ */
+html {
+    font-size: 10px;
+}
+body {
+    font-size: 1.4rem;
+    padding: $space/2 0 $spaceDouble;
+}
+a {
+    color: $colorPrimary;
+    &:hover,
+    &:focus {
+        //     text-decoration: none;
+    }
+}
+h1 {
+    font-size: 4rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+h2 {
+    font-size: 1.8rem;
+}
+.fa {
+    color: $colorPrimary;
+    margin: 0 5px;
+    vertical-align: baseline;
+    .btn & {
+        color: $white!important;
+    }
+    
+    .btn-default &{
+        color: $colorPrimary!important;
+    }
+}
+.btn-flow {
+    margin: $space/2;
+}
+.table{
+   border-radius: 3px;
+}
+
+
+header {
+    .logo {
+        display: inline-block;
+        width: 80px;
+        vertical-align: middle;
+        img {
+            width: 100%;
+        }
+    }
+}
+/**********************************************************************
+ *  store.html
+ */
+.section-store {
+    .search-form {
+        .col-sm-1 {
+            width: 60px;
+        }
+    }
+    .product-table {
+        thead td,
+        tfoot td{
+            @extend %align-right;
+        }
+        
+        td{
+            vertical-align: middle;
+            @extend %align-center;
+        }
+        
+        td:nth-child(2){
+            @extend %align-left;
+            padding-left: $space;
+        }
+        
+        td:nth-child(3){
+            @extend %align-right;
+            padding-right: $space;
+        }
+    }
+    .product-img {
+        img {
+           width: 100px;
+           height: 100px;
+        }
+    }
+}
+/**********************************************************************
+ *  product.html
+ */
+.section-product-detail {
+    .top{
+        display: table;
+    }
+    .product-img {
+        display: table-cell;
+        vertical-align: middle;
+        padding-right: $space/2;
+        
+        img{
+            width: 80px;
+            height: 80px;
+        }
+    }
+    .product-text {
+        display: table-cell;
+    }
+    .calorie {
+        font-size: 3.2rem;
+    }
+    .section-product-detail {
+        .fa {
+            vertical-align: baseline;
+            margin-right: $space/2;
+        }
+    }
+    .product-detail-table {
+        >tbody>tr>td {
+            padding: 15px;
+        }
+        thead,
+        tfoot,
+        td:first-child {
+            @extend %align-right;
+        }
+        td:nth-child(2) {
+            @extend %align-center;
+        }
+        .icon-circle {
+            display: inline-block;
+            border: 1px solid $greyLight;
+            background-color: orange;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            margin: 0 2px;
+        }
+        @for $i from 1 through 4 {
+            .range-#{$i} .icon-circle:nth-child(n+#{$i}) {
+                background-color: $white;
+            }
+        }
+    }
+}
+/**********************************************************************
+ *  cart.html
+ */
+.section-cart {
+    .table {
+        td:nth-child(2),
+        th:nth-child(2) {
+            @extend %align-center;
+        }
+        td:nth-child(3),
+        th:nth-child(3) {
+            @extend %align-right;
+        }
+        td:nth-child(4),
+        th:nth-child(4) {
+            @extend %align-center;
+        }
+        .input-group {
+            max-width: 150px;
+            margin: 0 auto;
+        }
+    }
+    .fa {
+        padding: 5px;
+        &:hover {
+            cursor: pointer;
+            color: lighten($colorPrimary, 15%);
+        }
+    }
+}

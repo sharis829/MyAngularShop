@@ -1,0 +1,67 @@
+<section ng-controller='storeController as vm' class='section-cart'>
+	<div class="alert alert-info alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<p><strong>Thanks for shopping at the Angular Store.</strong></p>
+		<p>This is your shopping cart. Here you can edit the items, go back to the store, clear the cart, or check out.</p>
+	</div>
+	<div class='row'>
+		<div class='col-sm-8'>
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr class="active">
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Price</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tr ng-if='vm.cart.totalQuantity == 0'><td colspan="4">Your cart is empty.</td></tr>
+				<tr ng-repeat='(sku, data) in vm.cart.productItems'>
+					<td>{{data.name}}</td>
+					<td>
+						<div class="input-group">
+<!--input 的值改变 和 对应的水果的数据model(vm.cart.productItems) 关联-->
+							<input type="text" class="form-control" ng-model='data.quantity' ng-change='vm.cart.updateQuantity(sku)'>
+							<span class="input-group-btn">
+								<button class="btn btn-info btn-add" ng-click='vm.cart.plusQuantity(sku)' type="button">+</button>
+       							<button class="btn btn-primary btn-minus" type="button" ng-click='vm.cart.minusQuantity(sku)'>-</button>
+      						</span>
+						</div>
+					</td>
+					<td>{{data.totalPrice | currency: '$': 2}}</td>
+					<td><span class='fa fa-remove' ng-click='vm.cart.removeItem(sku)'></span></td>
+				</tr>
+				<tfoot>
+					<tr class='active'>
+						<td><strong>Total</strong></td>
+						<td>
+							<strong>
+							{{ vm.cart.totalQuantity }}
+							</strong>
+						</td>
+						<td>
+							<strong>
+							{{ vm.cart.totalPrice | currency: '$': 2}}
+							</strong>
+						</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class='col-sm-4'>
+			<a class='btn btn-default btn-block btn-flow' href='#/store'>
+				<i class='fa fa-home'></i>Back to store
+			</a>
+			<button class='btn btn-danger btn-block btn-flow' ng-click='vm.cart.clearCart()' ng-disabled='vm.cart.totalQuantity == 0'>
+				<i class='fa fa-trash-o'></i>Clear cart
+			</button>
+			
+			<hr>
+			
+			<button class='btn btn-success btn-block btn-flow' ng-disabled='vm.cart.totalQuantity == 0'>
+				Go to Checkout
+			</button>
+		</div>
+	</div>
+</section>

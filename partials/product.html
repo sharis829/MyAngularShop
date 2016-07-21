@@ -1,0 +1,52 @@
+<section ng-controller='storeController as vm' class='section-product-detail'>
+	<div class='top'>
+		<div class='product-img'>
+			<img src='assets/img/svg/{{vm.activeProduct.img}}'>
+		</div>
+		<div class='product-text'>
+			<h2>{{vm.activeProduct.name}}</h2>
+			<p>{{vm.activeProduct.description}}</p>
+		</div>
+		<hr/>
+	</div>
+	<div class='row'>
+		<div class='col-sm-8'>
+			<table class='product-detail-table table table-bordered table-hover'>
+				<thead>
+					<tr class="active">
+						<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalQuantity | currency: '$': 2 }}</strong></a></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Calories</td>
+						<td><strong class='calorie'>{{vm.activeProduct.calories}}</strong></td>
+						<td></td>
+					</tr>
+					<tr ng-repeat='(nutrAbbre, nutrRange) in vm.activeProduct.nutritions'>
+						<td><strong>{{vm.nutrCaptions[nutrAbbre]}}</strong></td>
+						<td class='range-{{nutrRange}}'><span ng-repeat='i in [1,2,3,4]' class='icon-circle'></span></td>
+						<td><strong>{{vm.nutrRanges[nutrRange].level}}:</strong> {{vm.nutrRanges[nutrRange].description}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr class="active">
+						<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalQuantity | currency: '$': 2 }}</strong></a></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class='col-sm-4'>
+			<button class='btn btn-success btn-block btn-flow' ng-click='vm.cart.plusQuantity(vm.activeProduct.sku)'>
+				<i class='fa fa-cart-plus'></i>Add to cart
+			</button>
+			<button class='btn btn-danger btn-block btn-flow' ng-click='vm.cart.removeItem(vm.activeProduct.sku)'>
+				<i class='fa fa-trash'></i>Remove from cart
+			</button>
+			<a class='btn btn-default btn-block btn-flow' href='#/store'>
+				<i class='fa fa-home'></i>Back to store
+			</a>
+		</div>
+	</div>
+
+</section>

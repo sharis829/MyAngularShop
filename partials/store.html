@@ -1,0 +1,41 @@
+<section ng-controller='storeController as vm' class='section-store'>
+	<div class="alert alert-info alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<strong>Welcome to the Angular Store!</strong><br> Please select the products you want and add them to your shopping cart. When you are done, click the shopping cart icon to review your order and check out.
+	</div>
+	<form class='form-horizontal search-form'>
+		<div class="form-group">
+			<label for="searchInput" class='col-sm-1 control-label'>Search: </label>
+			<div class='col-sm-6'>
+				<input type="text" class="form-control" id="searchInput" placeholder="Please input the fruit name" ng-model='vm.searchKey'>
+			</div>
+		</div>
+	</form>
+	<div class='product-table table-responsive'>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr class="active">
+					<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'> <strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalQuantity | currency: '$': 2 }}</strong></a></td>
+				</tr>
+			</thead>
+			<tr ng-repeat='item in vm.store.products | filter: vm.searchKey'>
+				<td>
+					<a href='#/product/{{item.sku}}' class='product-img center-block'>
+						<img ng-src='assets/img/svg/{{item.img}}'>
+					</a>
+				</td>
+				<td>
+					<h2><a href='#/product/{{item.sku}}'>{{ item.name}}</a></h2>
+					<p>{{ item.description}}</p>
+				</td>
+				<td>{{ item.price | currency: '$': 2}}</td>
+				<td><a href='#' class='add-to-cart' ng-click='vm.cart.plusQuantity(item.sku)'><i class='fa fa-cart-plus'></i>Add to cart</a></td>
+			</tr>
+			<tfoot class="active">
+				<tr class="active">
+					<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalQuantity | currency: '$': 2 }}</strong></a></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</section>
