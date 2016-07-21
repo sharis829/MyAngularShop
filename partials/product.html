@@ -14,7 +14,7 @@
 			<table class='product-detail-table table table-bordered table-hover'>
 				<thead>
 					<tr class="active">
-						<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalQuantity | currency: '$': 2 }}</strong></a></td>
+						<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalPrice | currency: '$': 2 }}</strong></a></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,7 +31,7 @@
 				</tbody>
 				<tfoot>
 					<tr class="active">
-						<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalQuantity | currency: '$': 2 }}</strong></a></td>
+						<td colspan="4"> <i class='fa fa-shopping-cart'></i>Total:  <a href='#/cart' class='cart'><strong>{{vm.cart.totalQuantity}}</strong> item(s), <strong>{{vm.cart.totalPrice | currency: '$': 2 }}</strong></a></td>
 					</tr>
 				</tfoot>
 			</table>
